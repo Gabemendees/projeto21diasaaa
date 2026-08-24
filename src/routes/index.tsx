@@ -1,24 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Bonuses } from "@/components/landing/bonuses";
+import { FinalCta } from "@/components/landing/final-cta";
+import { Hero } from "@/components/landing/hero";
+import { HowItWorks } from "@/components/landing/how-it-works";
+import { Pains } from "@/components/landing/pains";
+import { Plans } from "@/components/landing/plans";
+import { PriceAnchor } from "@/components/landing/price-anchor";
+
+const TITLE = "Desafio 21 Dias — Treino de 25 min e Dieta Sem Restrição";
+const DESCRIPTION =
+  "Guia de treino + alimentação de 21 dias para emagrecer ou ganhar massa: 25 min, 3x por semana, sem contar calorias. A partir de R$ 9,90, pagamento único.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="min-h-screen bg-background">
+      <Hero />
+      <HowItWorks />
+      <Pains />
+      <Plans />
+      <Bonuses />
+      <PriceAnchor />
+      <FinalCta />
+    </main>
   );
 }
