@@ -25,7 +25,6 @@ export function Hero() {
         <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-navy-foreground/75 sm:text-lg">
           Funciona tanto para{" "}
           <strong className="text-navy-foreground">emagrecer</strong> quanto{" "}
-          para{" "}
           <strong className="text-navy-foreground">ganhar massa</strong>.{" "}
           25 minutos de treino, 3x por semana, sem contar calorias, sem pesar comida e sem
           cortar tudo o que você gosta.
