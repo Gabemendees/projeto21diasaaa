@@ -48,7 +48,6 @@ function PlanCard({
       e.preventDefault();
       onBasicClick();
     }
-    // Premium goes directly via href
   };
 
   return (
@@ -102,7 +101,7 @@ function PlanCard({
         className="mt-8 w-full"
         aria-label={featured ? `Escolher versão ${name}` : `Escolher versão ${name}`}
       >
-        {featured ? "Quero o Premium" : "Quero o Básico"}
+        {featured ? "Quero Premium" : "Quero o Básico"}
       </CtaButton>
     </div>
   );

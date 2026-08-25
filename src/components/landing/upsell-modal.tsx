@@ -12,8 +12,8 @@ interface UpsellModalProps {
 const premiumDifferentials = [
   "Treino detalhado dia a dia (casa e academia)",
   "2 cardápios completos (emagrecimento e ganho de massa)",
-  "6 receitas fáceis + planner de 21 dias",
-  "Guia de manutenção pós-desafio",
+  "6 receitas fáceis",
+  "Planner de acompanhamento de 21 dias",
 ];
 
 export function UpsellModal({ open, onAccept, onDecline }: UpsellModalProps) {
@@ -38,16 +38,16 @@ export function UpsellModal({ open, onAccept, onDecline }: UpsellModalProps) {
       aria-modal="true"
       aria-labelledby="upsell-title"
     >
-      {/* Overlay */}
+      {/* Overlay — dark, no blur so mobile perf is better */}
       <div
-        className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300"
+        className="absolute inset-0 bg-black/80"
         aria-hidden="true"
       />
 
       {/* Modal */}
       <div className="relative z-10 w-full max-w-md animate-in zoom-in-95 fade-in duration-300">
-        <div className="rounded-3xl border-2 border-lime bg-navy-deep p-7 shadow-2xl shadow-black/50 sm:p-8">
-          {/* Emoji decoration */}
+        <div className="rounded-3xl border-2 border-lime bg-navy-deep p-7 shadow-2xl shadow-black/60 sm:p-8">
+          {/* Decoration */}
           <p className="text-center text-3xl" aria-hidden="true">
             ⚡
           </p>
@@ -62,9 +62,9 @@ export function UpsellModal({ open, onAccept, onDecline }: UpsellModalProps) {
 
           {/* Body text */}
           <p className="mt-4 text-center text-sm leading-relaxed text-navy-foreground/80 sm:text-base">
-            Por apenas um pouco mais, leve a versão <strong className="text-lime">PREMIUM</strong> do
-            Desafio 21 Dias com <strong className="text-lime">50% de desconto</strong> — só agora,
-            só nesta oferta.
+            Por apenas um pouco mais, leve a versão <strong className="text-lime">PREMIUM</strong>{" "}
+            do Desafio 21 Dias com <strong className="text-lime">50% de desconto</strong> — só
+            agora, só nesta oferta.
           </p>
 
           {/* Price comparison */}
@@ -78,7 +78,10 @@ export function UpsellModal({ open, onAccept, onDecline }: UpsellModalProps) {
           {/* Differentials list */}
           <ul className="mt-6 space-y-2">
             {premiumDifferentials.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm text-navy-foreground/90">
+              <li
+                key={item}
+                className="flex items-start gap-2 text-sm text-navy-foreground/90"
+              >
                 <span className="mt-0.5 shrink-0 text-lime" aria-hidden="true">
                   ✅
                 </span>
@@ -87,7 +90,7 @@ export function UpsellModal({ open, onAccept, onDecline }: UpsellModalProps) {
             ))}
           </ul>
 
-          {/* Action buttons */}
+          {/* Action buttons — stacked */}
           <div className="mt-7 flex flex-col gap-3">
             <CtaButton
               onClick={onAccept}
@@ -97,9 +100,10 @@ export function UpsellModal({ open, onAccept, onDecline }: UpsellModalProps) {
               Sim, quero o Premium com desconto
             </CtaButton>
 
+            {/* Secondary: text link style, no background */}
             <button
               onClick={onDecline}
-              className="w-full rounded-full px-6 py-3 text-sm font-semibold text-navy-foreground/50 transition-colors hover:text-navy-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-foreground/30"
+              className="w-full py-2 text-sm font-medium text-navy-foreground/50 underline-offset-4 transition-colors hover:text-navy-foreground/70 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-foreground/30"
               aria-label="Recusar oferta e continuar com o plano básico"
             >
               Não, quero continuar só com o básico
