@@ -19,7 +19,7 @@ export function FinalCta() {
         </p>
 
         <div className="mt-9">
-          <CtaButton className="w-full sm:w-auto">Quero Meu Desafio Agora</CtaButton>
+          <CtaButton href="#escolha-versao" className="w-full sm:w-auto">Quero Meu Desafio Agora</CtaButton>
         </div>
 
         <div className="mt-10 rounded-3xl border border-lime/30 bg-lime/10 px-6 py-6">

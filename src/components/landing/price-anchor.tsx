@@ -61,7 +61,7 @@ export function PriceAnchor() {
           <p className="text-sm font-semibold text-foreground sm:text-base">
             ✅ Pagamento único. Sem mensalidade. Sem renovação automática.
           </p>
-          <CtaButton className="mt-6 w-full sm:w-auto">Quero Garantir Meu Acesso</CtaButton>
+          <CtaButton href="#escolha-versao" className="mt-6 w-full sm:w-auto">Quero Garantir Meu Acesso</CtaButton>
         </div>
       </div>
     </section>
