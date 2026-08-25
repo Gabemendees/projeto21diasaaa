@@ -47,6 +47,16 @@ export function UpsellModal({ open, onAccept, onDecline }: UpsellModalProps) {
       {/* Modal */}
       <div className="relative z-10 w-full max-w-md animate-in zoom-in-95 fade-in duration-300">
         <div className="rounded-3xl border-2 border-lime bg-navy-deep p-7 shadow-2xl shadow-black/60 sm:p-8">
+          {/* Close button — X in top right, does NOT redirect */}
+          <button
+            type="button"
+            onClick={onDecline}
+            className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-navy-foreground/40 transition-colors hover:bg-white/10 hover:text-navy-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-foreground/30"
+            aria-label="Fechar oferta"
+          >
+            ✕
+          </button>
+
           {/* Decoration */}
           <p className="text-center text-3xl" aria-hidden="true">
             ⚡
