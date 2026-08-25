@@ -15,7 +15,7 @@ export function PriceAnchor() {
             Um Investimento Menor Que Um Lanche
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            O Premium custa <strong className="text-foreground">R$ 29,90</strong> — menos que um
+            O Premium custa <strong className="text-foreground">R$ 29,90</strong>, menos que um
             delivery de comida no fim de semana. E não acaba em 30 minutos.
           </p>
         </header>

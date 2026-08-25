@@ -14,7 +14,7 @@ export function FinalCta() {
         </h2>
 
         <p className="mt-5 text-base leading-relaxed text-navy-foreground/75 sm:text-lg">
-          Daqui a 21 dias você pode estar exatamente no mesmo lugar — ou pode estar diferente. A
+          Daqui a 21 dias você pode estar exatamente no mesmo lugar, ou pode estar diferente. A
           única coisa que muda entre os dois cenários é a decisão que você toma hoje 🔥
         </p>
 
