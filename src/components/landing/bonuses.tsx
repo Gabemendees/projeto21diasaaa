@@ -1,28 +1,28 @@
 const bonuses = [
   {
     icon: "🍽️",
-    title: "2 Cardápios Completos",
-    text: "Um para emagrecimento e um para ganho de massa, prontos para seguir.",
+    title: "Cardápios que funcionam pra emagrecer E pra ganhar massa",
+    text: "Prontos para seguir, sem precisar pensar no que vai comer.",
   },
   {
-    icon: "👩‍🍳",
-    title: "6 Receitas Fáceis",
-    text: "Refeições rápidas, com ingredientes simples e sabor de comida de verdade.",
+    icon: "👩\u200d\u200d🍳",
+    title: "Receitas que você realmente vai querer fazer",
+    text: "Ingredientes simples, preparo rápido, sabor de verdade.",
   },
   {
     icon: "🗓️",
-    title: "Planner de 21 Dias",
-    text: "Marque cada treino e cada dia concluído para não perder o ritmo.",
+    title: "Marque cada dia como feito e veja sua sequência",
+    text: "Planner visual que mantém seu ritmo sem precisar pensar.",
   },
   {
     icon: "💧",
-    title: "Guia de Hidratação e Sono",
-    text: "Os dois fatores que mais aceleram (ou travam) o seu resultado.",
+    title: "Hidratação e sono que aceleram seu resultado",
+    text: "Dois fatores que você controla hoje e que multiplicam seus esforços.",
   },
   {
     icon: "🏁",
-    title: "Guia de Manutenção Pós-Desafio",
-    text: "O que fazer no dia 22 para manter o que você conquistou.",
+    title: "Não pare depois do dia 21",
+    text: "Guia prático de manutenção para o que veio para ficar.",
   },
 ];
 

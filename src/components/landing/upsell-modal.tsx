@@ -7,7 +7,6 @@ interface UpsellModalProps {
   open: boolean;
   onAccept: () => void;
   onDecline: () => void;
-  /** Separate close action — only dismisses the modal, no redirect. */
   onClose: () => void;
 }
 
@@ -19,7 +18,6 @@ const premiumDifferentials = [
 ];
 
 export function UpsellModal({ open, onAccept, onDecline, onClose }: UpsellModalProps) {
-  // Lock body scroll when modal is open
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -40,16 +38,10 @@ export function UpsellModal({ open, onAccept, onDecline, onClose }: UpsellModalP
       aria-modal="true"
       aria-labelledby="upsell-title"
     >
-      {/* Overlay — dark, no blur so mobile perf is better */}
-      <div
-        className="absolute inset-0 bg-black/80"
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 bg-black/80" aria-hidden="true" />
 
-      {/* Modal */}
       <div className="relative z-10 w-full max-w-md animate-in zoom-in-95 fade-in duration-300">
         <div className="rounded-3xl border-2 border-lime bg-navy-deep p-7 shadow-2xl shadow-black/60 sm:p-8">
-          {/* Close button — X in top right, does NOT redirect */}
           <button
             type="button"
             onClick={(e) => {
@@ -62,12 +54,10 @@ export function UpsellModal({ open, onAccept, onDecline, onClose }: UpsellModalP
             ✕
           </button>
 
-          {/* Decoration */}
           <p className="text-center text-3xl" aria-hidden="true">
             ⚡
           </p>
 
-          {/* Title */}
           <h2
             id="upsell-title"
             className="mt-3 text-center font-display text-2xl text-navy-foreground sm:text-3xl"
@@ -75,22 +65,23 @@ export function UpsellModal({ open, onAccept, onDecline, onClose }: UpsellModalP
             Espera! Antes de continuar...
           </h2>
 
-          {/* Body text */}
           <p className="mt-4 text-center text-sm leading-relaxed text-navy-foreground/80 sm:text-base">
-            Por apenas um pouco mais, leve a versão <strong className="text-lime">PREMIUM</strong>{" "}
-            do Desafio 21 Dias com <strong className="text-lime">50% de desconto</strong> — só
-            agora, só nesta oferta.
+            Por apenas um pouco mais, leve a versão{" "}
+            <strong className="text-lime">PREMIUM</strong>{" "}
+            do Desafio 21 Dias com{" "}
+            <strong className="text-lime">50% de desconto</strong>. Só agora, só nesta oferta.
           </p>
 
-          {/* Price comparison */}
-          <div className="mt-6 flex items-center justify-center gap-4">
+          <div className="mt-6 flex items-center justify-center gap-3">
             <span className="text-lg text-navy-foreground/50 line-through sm:text-xl">
               R$ 29,90
             </span>
             <span className="font-display text-4xl text-lime sm:text-5xl">R$ 14,90</span>
+            <span className="rounded-full bg-lime/20 px-2 py-0.5 text-xs font-semibold text-lime">
+              à vista
+            </span>
           </div>
 
-          {/* Differentials list */}
           <ul className="mt-6 space-y-2">
             {premiumDifferentials.map((item) => (
               <li
@@ -105,17 +96,15 @@ export function UpsellModal({ open, onAccept, onDecline, onClose }: UpsellModalP
             ))}
           </ul>
 
-          {/* Action buttons — stacked */}
           <div className="mt-7 flex flex-col gap-3">
             <CtaButton
               onClick={onAccept}
               className="w-full"
               aria-label="Aceitar oferta do Premium com 50% de desconto"
             >
-              Sim, quero o Premium com desconto
+              Quero o Premium com Desconto
             </CtaButton>
 
-            {/* Secondary: text link style, no background */}
             <button
               onClick={onDecline}
               className="w-full py-2 text-sm font-medium text-navy-foreground/50 underline-offset-4 transition-colors hover:text-navy-foreground/70 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-foreground/30"
