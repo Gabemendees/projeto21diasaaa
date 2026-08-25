@@ -132,6 +132,10 @@ export function Plans() {
     window.location.href = BASIC_URL;
   };
 
+  const handleCloseUpsell = () => {
+    setShowUpsell(false);
+  };
+
   return (
     <>
       <section className="bg-background px-5 py-16 sm:py-24">
@@ -167,6 +171,7 @@ export function Plans() {
         open={showUpsell}
         onAccept={handleAcceptUpsell}
         onDecline={handleDeclineUpsell}
+        onClose={handleCloseUpsell}
       />
     </>
   );

@@ -7,6 +7,8 @@ interface UpsellModalProps {
   open: boolean;
   onAccept: () => void;
   onDecline: () => void;
+  /** Separate close action — only dismisses the modal, no redirect. */
+  onClose: () => void;
 }
 
 const premiumDifferentials = [
@@ -16,7 +18,7 @@ const premiumDifferentials = [
   "Planner de acompanhamento de 21 dias",
 ];
 
-export function UpsellModal({ open, onAccept, onDecline }: UpsellModalProps) {
+export function UpsellModal({ open, onAccept, onDecline, onClose }: UpsellModalProps) {
   // Lock body scroll when modal is open
   useEffect(() => {
     if (open) {
@@ -50,7 +52,10 @@ export function UpsellModal({ open, onAccept, onDecline }: UpsellModalProps) {
           {/* Close button — X in top right, does NOT redirect */}
           <button
             type="button"
-            onClick={onDecline}
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
             className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-full text-navy-foreground/40 transition-colors hover:bg-white/10 hover:text-navy-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-foreground/30"
             aria-label="Fechar oferta"
           >
