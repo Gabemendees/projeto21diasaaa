@@ -8,7 +8,7 @@ import { Pains } from "@/components/landing/pains";
 import { Plans } from "@/components/landing/plans";
 import { PriceAnchor } from "@/components/landing/price-anchor";
 
-const TITLE = "Desafio 21 Dias — Treino de 25 min e Dieta Sem Restrição";
+const TITLE = "Desafio 21 Dias: Treino de 25 min e Dieta Sem Restrição";
 const DESCRIPTION =
   "Guia de treino + alimentação de 21 dias para emagrecer ou ganhar massa: 25 min, 3x por semana, sem contar calorias. A partir de R$ 9,90, pagamento único.";
 
