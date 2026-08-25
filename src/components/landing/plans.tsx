@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 import { CtaButton } from "./cta-button";
+import { UpsellModal } from "./upsell-modal";
 
 const basicItems = [
   "Treino completo de 21 dias (3 semanas progressivas)",
@@ -18,15 +20,37 @@ const premiumItems = [
   "Guia de manutenção pós-desafio",
 ];
 
+const PREMIUM_DIRECT_URL = "https://pay.sunize.com.br/iQQmWWuk";
+const PREMIUM_DISCOUNT_URL = "https://pay.sunize.com.br/bTViWRRk";
+const BASIC_URL = "https://pay.sunize.com.br/ytcEyjZz";
+
 interface PlanCardProps {
   name: string;
   price: string;
   description: string;
   items: string[];
   featured?: boolean;
+  onBasicClick?: () => void;
 }
 
-function PlanCard({ name, price, description, items, featured = false }: PlanCardProps) {
+function PlanCard({
+  name,
+  price,
+  description,
+  items,
+  featured = false,
+  onBasicClick,
+}: PlanCardProps) {
+  const isBasic = name === "Básico";
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isBasic && onBasicClick) {
+      e.preventDefault();
+      onBasicClick();
+    }
+    // Premium goes directly via href
+  };
+
   return (
     <div
       className={cn(
@@ -72,9 +96,11 @@ function PlanCard({ name, price, description, items, featured = false }: PlanCar
       </ul>
 
       <CtaButton
+        href={featured ? PREMIUM_DIRECT_URL : "#"}
+        onClick={handleClick}
         variant={featured ? "solid" : "outline"}
         className="mt-8 w-full"
-        aria-label={`Escolher versão ${name}`}
+        aria-label={featured ? `Escolher versão ${name}` : `Escolher versão ${name}`}
       >
         {featured ? "Quero o Premium" : "Quero o Básico"}
       </CtaButton>
@@ -83,33 +109,56 @@ function PlanCard({ name, price, description, items, featured = false }: PlanCar
 }
 
 export function Plans() {
-  return (
-    <section className="bg-background px-5 py-16 sm:py-24">
-      <div className="mx-auto max-w-4xl">
-        <header className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-3xl text-foreground sm:text-5xl">Escolha Sua Versão</h2>
-          <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            As duas versões entregam o desafio completo. A Premium leva você pela mão do primeiro ao
-            último dia.
-          </p>
-        </header>
+  const [showUpsell, setShowUpsell] = useState(false);
 
-        <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
-          <PlanCard
-            name="Básico"
-            price="9,90"
-            description="O essencial para começar hoje."
-            items={basicItems}
-          />
-          <PlanCard
-            name="Premium"
-            price="29,90"
-            description="A experiência completa, dia por dia."
-            items={premiumItems}
-            featured
-          />
+  const handleBasicClick = () => {
+    setShowUpsell(true);
+  };
+
+  const handleAcceptUpsell = () => {
+    window.location.href = PREMIUM_DISCOUNT_URL;
+  };
+
+  const handleDeclineUpsell = () => {
+    window.location.href = BASIC_URL;
+  };
+
+  return (
+    <>
+      <section className="bg-background px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-4xl">
+          <header className="mx-auto max-w-2xl text-center">
+            <h2 className="font-display text-3xl text-foreground sm:text-5xl">Escolha Sua Versão</h2>
+            <p className="mt-4 text-base text-muted-foreground sm:text-lg">
+              As duas versões entregam o desafio completo. A Premium leva você pela mão do primeiro ao
+              último dia.
+            </p>
+          </header>
+
+          <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
+            <PlanCard
+              name="Básico"
+              price="9,90"
+              description="O essencial para começar hoje."
+              items={basicItems}
+              onBasicClick={handleBasicClick}
+            />
+            <PlanCard
+              name="Premium"
+              price="29,90"
+              description="A experiência completa, dia por dia."
+              items={premiumItems}
+              featured
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <UpsellModal
+        open={showUpsell}
+        onAccept={handleAcceptUpsell}
+        onDecline={handleDeclineUpsell}
+      />
+    </>
   );
 }
