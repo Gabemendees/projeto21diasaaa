@@ -29,7 +29,7 @@ export function Hero() {
         </p>
 
         <div className="mt-9 flex flex-col items-center gap-4">
-          <CtaButton className="w-full sm:w-auto">Quero Começar Agora</CtaButton>
+          <CtaButton href="#escolha-versao" className="w-full sm:w-auto">Quero Começar Agora</CtaButton>
           <p className="text-xs text-navy-foreground/60 sm:text-sm">
             Acesso imediato • Pagamento único • Garantia de 7 dias
           </p>

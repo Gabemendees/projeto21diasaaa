@@ -138,7 +138,7 @@ export function Plans() {
 
   return (
     <>
-      <section className="bg-background px-5 py-16 sm:py-24">
+      <section id="escolha-versao" className="bg-background px-5 py-16 sm:py-24">
         <div className="mx-auto max-w-4xl">
           <header className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-3xl text-foreground sm:text-5xl">Escolha Sua Versão</h2>
