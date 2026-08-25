@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, memo } from "react";
 import { cn } from "@/lib/utils";
 
 import { CtaButton } from "./cta-button";
@@ -33,7 +33,8 @@ interface PlanCardProps {
   onBasicClick?: () => void;
 }
 
-function PlanCard({
+// memoized — só re-renderiza se props mudarem
+const PlanCard = memo(function PlanCard({
   name,
   price,
   description,
@@ -115,26 +116,26 @@ function PlanCard({
       )}
     </div>
   );
-}
+});
 
 export function Plans() {
   const [showUpsell, setShowUpsell] = useState(false);
 
-  const handleBasicClick = () => {
+  const handleBasicClick = useCallback(() => {
     setShowUpsell(true);
-  };
+  }, []);
 
-  const handleAcceptUpsell = () => {
+  const handleAcceptUpsell = useCallback(() => {
     window.location.href = PREMIUM_DISCOUNT_URL;
-  };
+  }, []);
 
-  const handleDeclineUpsell = () => {
+  const handleDeclineUpsell = useCallback(() => {
     window.location.href = BASIC_URL;
-  };
+  }, []);
 
-  const handleCloseUpsell = () => {
+  const handleCloseUpsell = useCallback(() => {
     setShowUpsell(false);
-  };
+  }, []);
 
   return (
     <>
