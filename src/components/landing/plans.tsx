@@ -43,13 +43,6 @@ function PlanCard({
 }: PlanCardProps) {
   const isBasic = name === "Básico";
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isBasic && onBasicClick) {
-      e.preventDefault();
-      onBasicClick();
-    }
-  };
-
   return (
     <div
       className={cn(
@@ -94,15 +87,32 @@ function PlanCard({
         ))}
       </ul>
 
-      <CtaButton
-        href={featured ? PREMIUM_DIRECT_URL : "#"}
-        onClick={handleClick}
-        variant={featured ? "solid" : "outline"}
-        className="mt-8 w-full"
-        aria-label={featured ? `Escolher versão ${name}` : `Escolher versão ${name}`}
-      >
-        {featured ? "Quero Premium" : "Quero o Básico"}
-      </CtaButton>
+      {isBasic ? (
+        <button
+          type="button"
+          onClick={onBasicClick}
+          className={cn(
+            "mt-8 w-full rounded-full border-2 border-action bg-transparent px-8 py-4 text-base font-bold tracking-wide text-action transition-all duration-200",
+            "hover:bg-action hover:text-action-foreground",
+            "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-action/50 focus-visible:ring-offset-2",
+            "active:scale-[0.98]",
+          )}
+        >
+          Quero o Básico
+        </button>
+      ) : (
+        <a
+          href={PREMIUM_DIRECT_URL}
+          className={cn(
+            "mt-8 inline-flex items-center justify-center rounded-full bg-action px-8 py-4 text-base font-bold tracking-wide text-action-foreground shadow-lg shadow-action/25",
+            "hover:-translate-y-0.5 hover:bg-action/90 hover:shadow-xl",
+            "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-action/50 focus-visible:ring-offset-2",
+            "active:scale-[0.98] transition-all duration-200",
+          )}
+        >
+          Quero Premium
+        </a>
+      )}
     </div>
   );
 }
