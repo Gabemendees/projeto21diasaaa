@@ -35,6 +35,7 @@ function Index() {
       <Pains />
       <Plans />
       <Bonuses />
+      <Testimonials />
       <PriceAnchor />
       <FinalCta />
     </main>
