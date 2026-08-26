@@ -1,28 +1,21 @@
-/**
- * Bloco de depoimentos reais (prints de conversas do WhatsApp).
- *
- * IMPORTANTE: as imagens devem ser os prints reais enviados pelo cliente.
- * Para adicionar, salve cada arquivo em `src/assets/testimonials/` e
- * registre-o abaixo com o nome extraído do topo da conversa.
- *
- * Exemplo:
- *   import juliana from "@/assets/testimonials/juliana.jpeg";
- *   const testimonials: Testimonial[] = [{ name: "Juliana", image: juliana }];
- */
+import marceloAsset from "@/assets/depoimento-marcelo.jpeg.asset.json";
+import pedroAsset from "@/assets/depoimento-pedro.jpeg.asset.json";
+import rebecaAsset from "@/assets/depoimento-rebeca.jpeg.asset.json";
 
 interface Testimonial {
   /** Nome exibido abaixo do print (extraído do topo da conversa). */
   name: string;
-  /** Import estático da imagem do print, exibida sem edições. */
+  /** URL do print real, exibido sem edições. */
   image: string;
 }
 
-const testimonials: Testimonial[] = [];
+const testimonials: Testimonial[] = [
+  { name: "Rebeca", image: rebecaAsset.url },
+  { name: "Marcelo", image: marceloAsset.url },
+  { name: "Pedro", image: pedroAsset.url },
+];
 
 export function Testimonials() {
-  // Sem prints registrados não há o que exibir — nunca inventamos depoimentos.
-  if (testimonials.length === 0) return null;
-
   return (
     <section id="depoimentos" className="bg-navy-deep px-5 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl">
@@ -48,7 +41,7 @@ export function Testimonials() {
                 src={item.image}
                 alt={`Print da conversa de ${item.name} sobre o Desafio 21 Dias`}
                 loading="lazy"
-                className="mt-3 w-full rounded-2xl border border-navy-foreground/10 bg-background object-cover"
+                className="mt-3 w-full rounded-2xl border border-navy-foreground/10"
               />
               <p className="mt-4 text-center text-base font-bold text-navy-foreground">
                 {item.name}
