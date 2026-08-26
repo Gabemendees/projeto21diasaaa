@@ -18,8 +18,7 @@ export function Hero() {
         </span>
 
         <h1 className="font-display mt-6 text-4xl leading-[0.95] text-navy-foreground sm:text-6xl">
-          Desafio 21 Dias:{" "}
-          <span className="text-action">Transforme Seu Corpo Sem Academia Lotada e Sem Cortar Sua Comida Favorita</span>
+          <span className="text-action">Desafio 21 Dias:</span> Sem Treino Demorado, Sem Dieta Restritiva
         </h1>
 
         <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-navy-foreground/75 sm:text-lg">
