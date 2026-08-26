@@ -5,12 +5,10 @@ import { CtaButton } from "./cta-button";
 import { UpsellModal } from "./upsell-modal";
 
 const basicItems = [
-  "Guia completo de 21 dias em PDF, com índice e navegação",
-  "Treino explicado dia a dia, com passo a passo de execução",
-  "3 semanas progressivas (base, progressão e intensificação)",
+  "Treino completo de 21 dias, explicado passo a passo",
   "Método do Prato para alimentação sem dieta restritiva",
-  "Seção de Perguntas Frequuntas",
-  "Resumo rápido de consulta diária (cola com tudo em 1 página)",
+  "3 semanas progressivas (base, progressão e intensificação)",
+  "Guia direto ao ponto, fácil de seguir do início ao fim",
 ];
 
 const premiumItems = [
