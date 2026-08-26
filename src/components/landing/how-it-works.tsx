@@ -3,7 +3,7 @@ const steps = [
     number: "01",
     icon: "🎯",
     title: "Escolha seu objetivo",
-    text: "Emagrecer ou ganhar massa. O desafio se adapta ao que você quer — sem precisar mudar de plano no meio do caminho.",
+    text: "Emagrecer ou ganhar massa. O desafio se adapta ao que você quer, sem precisar mudar de plano no meio do caminho.",
   },
   {
     number: "02",
@@ -49,6 +49,12 @@ export function HowItWorks() {
             </li>
           ))}
         </ol>
+
+        <div className="mt-10 rounded-3xl border border-lime/30 bg-lime/10 px-6 py-6 text-center">
+          <p className="mt-1 text-sm font-semibold text-navy-foreground sm:text-base">
+            Guia estruturado com índice, passo a passo de execução dos exercícios e perguntas frequentes — nada de instrução solta ou genérica.
+          </p>
+        </div>
       </div>
     </section>
   );

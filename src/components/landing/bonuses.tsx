@@ -1,28 +1,33 @@
 const bonuses = [
   {
     icon: "🍽️",
-    title: "Cardápios que funcionam pra emagrecer E pra ganhar massa",
-    text: "Prontos para seguir, sem precisar pensar no que vai comer.",
+    title: "2 Cardápios Completos",
+    text: "Emagrecimento e ganho de massa, cada um com 3 dias de exemplo prontos para seguir.",
+  },
+  {
+    icon: "🏋️",
+    title: "Treino Casa e Academia",
+    text: "Cada exercício com versão para fazer em casa ou na academia, lado a lado.",
   },
   {
     icon: "👩\u200d\u200d🍳",
-    title: "Receitas que você realmente vai querer fazer",
-    text: "Ingredientes simples, preparo rápido, sabor de verdade.",
+    title: "6 Receitas Fáceis",
+    text: "Receitas rápidas para cada momento do dia, do café da manhã ao pós-treino.",
   },
   {
     icon: "🗓️",
-    title: "Marque cada dia como feito e veja sua sequência",
-    text: "Planner visual que mantém seu ritmo sem precisar pensar.",
+    title: "Planner de 21 Dias",
+    text: "Acompanhe visualmente seu progresso dia a dia.",
   },
   {
     icon: "💧",
-    title: "Hidratação e sono que aceleram seu resultado",
-    text: "Dois fatores que você controla hoje e que multiplicam seus esforços.",
+    title: "Guia de Hidratação e Sono",
+    text: "Os dois fatores mais esquecidos, e mais importantes, para o resultado aparecer.",
   },
   {
     icon: "🏁",
-    title: "Não pare depois do dia 21",
-    text: "Guia prático de manutenção para o que veio para ficar.",
+    title: "Guia Pós-Desafio",
+    text: "O que fazer depois do dia 21 para manter o resultado.",
   },
 ];
 
@@ -32,13 +37,13 @@ export function Bonuses() {
       <div className="mx-auto max-w-5xl">
         <header className="mx-auto max-w-2xl text-center">
           <span className="inline-flex rounded-full border border-lime/40 bg-lime/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-lime uppercase">
-            Bônus Exclusivos
+            Materiais Extras Premium
           </span>
           <h2 className="font-display mt-5 text-3xl text-navy-foreground sm:text-5xl">
             Só na Versão Premium
           </h2>
           <p className="mt-4 text-base text-navy-foreground/75 sm:text-lg">
-            Cinco materiais extras que transformam o desafio em um plano guiado do início ao fim.
+            Seis materiais extras que transformam o desafio em um plano guiado do início ao fim.
           </p>
         </header>
 

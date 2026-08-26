@@ -5,19 +5,23 @@ import { CtaButton } from "./cta-button";
 import { UpsellModal } from "./upsell-modal";
 
 const basicItems = [
-  "Treino completo de 21 dias (3 semanas progressivas)",
-  "Método do prato para a alimentação",
-  "Guia de hábitos diários",
+  "Guia completo de 21 dias em PDF, com índice e navegação",
+  "Treino explicado dia a dia, com passo a passo de execução",
+  "3 semanas progressivas (base, progressão e intensificação)",
+  "Método do Prato para alimentação sem dieta restritiva",
+  "Seção de Perguntas Frequuntas",
+  "Resumo rápido de consulta diária (cola com tudo em 1 página)",
 ];
 
 const premiumItems = [
-  "Tudo que tem na versão Básica",
-  "Treino detalhado dia a dia (casa e academia)",
-  "2 cardápios completos (emagrecimento e ganho de massa)",
-  "6 receitas fáceis",
-  "Planner de acompanhamento de 21 dias",
+  "Tudo do Básico, mais:",
+  "Treino detalhado dia a dia, versão casa E academia lado a lado",
+  "2 cardápios completos (emagrecimento e ganho de massa), cada um com 3 dias de exemplo prontos",
+  "6 receitas fáceis passo a passo",
+  "Planner de acompanhamento dos 21 dias",
   "Guia de hidratação e sono",
   "Guia de manutenção pós-desafio",
+  "FAQ exclusivo e mais aprofundado",
 ];
 
 const PREMIUM_DIRECT_URL = "https://pay.sunize.com.br/iQQmWWuk";
@@ -33,7 +37,6 @@ interface PlanCardProps {
   onBasicClick?: () => void;
 }
 
-// memoized — só re-renderiza se props mudarem
 const PlanCard = memo(function PlanCard({
   name,
   price,
@@ -81,7 +84,7 @@ const PlanCard = memo(function PlanCard({
         {items.map((item) => (
           <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
             <span aria-hidden="true" className={featured ? "text-lime" : "text-action"}>
-              ✅
+              {item.startsWith("Tudo") ? "" : "✅"}
             </span>
             {item}
           </li>
@@ -142,10 +145,9 @@ export function Plans() {
       <section id="escolha-versao" className="bg-background px-5 py-16 sm:py-24">
         <div className="mx-auto max-w-4xl">
           <header className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl text-foreground sm:text-5xl">Escolha Sua Versão</h2>
+            <h2 className="font-display text-3xl text-foreground sm:text-5xl">O Que Você Recebe</h2>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-              As duas versões entregam o desafio completo. A Premium leva você pela mão do primeiro ao
-              último dia.
+              Básico e Premium entregam o mesmo desafio. A Premium vai além.
             </p>
           </header>
 
