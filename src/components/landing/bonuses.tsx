@@ -1,3 +1,5 @@
+import premiumMateriais from "@/assets/premium-materiais.png.asset.json";
+
 const bonuses = [
   {
     icon: "🍽️",
