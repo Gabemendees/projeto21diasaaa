@@ -95,7 +95,7 @@ export function Testimonials() {
           {testimonials.map((item) => (
             <li
               key={item.name}
-              className="w-[82%] shrink-0 snap-center rounded-3xl border border-navy-foreground/15 bg-navy/60 p-4 shadow-xl sm:w-[46%] lg:w-[31%]"
+              className="mx-auto w-full max-w-md shrink-0 snap-center rounded-3xl border border-navy-foreground/15 bg-navy/60 p-4 shadow-xl"
             >
               <span className="inline-flex rounded-full border border-lime/40 bg-lime/10 px-3 py-1 text-[11px] font-semibold tracking-wide text-lime uppercase">
                 Aluno Real
