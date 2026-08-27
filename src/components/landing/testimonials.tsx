@@ -1,3 +1,5 @@
+import { useCallback, useRef } from "react";
+
 import marceloAsset from "@/assets/depoimento-marcelo.jpeg.asset.json";
 import pedroAsset from "@/assets/depoimento-pedro.jpeg.asset.json";
 import rebecaAsset from "@/assets/depoimento-rebeca.jpeg.asset.json";
