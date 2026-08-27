@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import marceloAsset from "@/assets/depoimento-marcelo.jpeg.asset.json";
 import pedroAsset from "@/assets/depoimento-pedro.jpeg.asset.json";
@@ -20,6 +20,35 @@ const testimonials: Testimonial[] = [
 export function Testimonials() {
   const trackRef = useRef<HTMLUListElement>(null);
   const dragState = useRef({ active: false, startX: 0, startScroll: 0 });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  /** Calcula o card mais próximo do centro visível do carrossel. */
+  const handleScroll = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const center = track.scrollLeft + track.clientWidth / 2;
+    const items = Array.from(track.children) as HTMLElement[];
+    let closest = 0;
+    let smallest = Number.POSITIVE_INFINITY;
+    items.forEach((item, index) => {
+      const distance = Math.abs(item.offsetLeft + item.offsetWidth / 2 - center);
+      if (distance < smallest) {
+        smallest = distance;
+        closest = index;
+      }
+    });
+    setActiveIndex(closest);
+  }, []);
+
+  const scrollToIndex = useCallback((index: number) => {
+    const track = trackRef.current;
+    const item = track?.children[index] as HTMLElement | undefined;
+    if (!track || !item) return;
+    track.scrollTo({
+      left: item.offsetLeft - (track.clientWidth - item.offsetWidth) / 2,
+      behavior: "smooth",
+    });
+  }, []);
 
   const handlePointerDown = useCallback((event: React.PointerEvent<HTMLUListElement>) => {
     const track = trackRef.current;
