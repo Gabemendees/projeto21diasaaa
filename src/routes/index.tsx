@@ -38,6 +38,7 @@ function Index() {
       <Bonuses />
       <Testimonials />
       <PriceAnchor />
+      <Faq />
       <FinalCta />
     </main>
   );
