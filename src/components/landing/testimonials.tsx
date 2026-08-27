@@ -1,4 +1,6 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
+
+import { cn } from "@/lib/utils";
 
 import marceloAsset from "@/assets/depoimento-marcelo.jpeg.asset.json";
 import pedroAsset from "@/assets/depoimento-pedro.jpeg.asset.json";
@@ -20,6 +22,35 @@ const testimonials: Testimonial[] = [
 export function Testimonials() {
   const trackRef = useRef<HTMLUListElement>(null);
   const dragState = useRef({ active: false, startX: 0, startScroll: 0 });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  /** Calcula o card mais próximo do centro visível do carrossel. */
+  const handleScroll = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const center = track.scrollLeft + track.clientWidth / 2;
+    const items = Array.from(track.children) as HTMLElement[];
+    let closest = 0;
+    let smallest = Number.POSITIVE_INFINITY;
+    items.forEach((item, index) => {
+      const distance = Math.abs(item.offsetLeft + item.offsetWidth / 2 - center);
+      if (distance < smallest) {
+        smallest = distance;
+        closest = index;
+      }
+    });
+    setActiveIndex(closest);
+  }, []);
+
+  const scrollToIndex = useCallback((index: number) => {
+    const track = trackRef.current;
+    const item = track?.children[index] as HTMLElement | undefined;
+    if (!track || !item) return;
+    track.scrollTo({
+      left: item.offsetLeft - (track.clientWidth - item.offsetWidth) / 2,
+      behavior: "smooth",
+    });
+  }, []);
 
   const handlePointerDown = useCallback((event: React.PointerEvent<HTMLUListElement>) => {
     const track = trackRef.current;
@@ -58,6 +89,7 @@ export function Testimonials() {
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
+          onScroll={handleScroll}
           className="mt-12 -mx-5 flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 select-none active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0"
         >
           {testimonials.map((item) => (
@@ -82,7 +114,25 @@ export function Testimonials() {
           ))}
         </ul>
 
-        <p className="mt-2 text-center text-xs text-navy-foreground/60">
+        <div className="mt-4 flex items-center justify-center gap-2">
+          {testimonials.map((item, index) => (
+            <button
+              key={item.name}
+              type="button"
+              onClick={() => scrollToIndex(index)}
+              aria-label={`Ver depoimento de ${item.name}`}
+              aria-current={index === activeIndex}
+              className={cn(
+                "h-2.5 rounded-full transition-all duration-300",
+                index === activeIndex
+                  ? "w-6 bg-action"
+                  : "w-2.5 bg-navy-foreground/25 hover:bg-navy-foreground/40",
+              )}
+            />
+          ))}
+        </div>
+
+        <p className="mt-3 text-center text-xs text-navy-foreground/60">
           Arraste para o lado para ver mais depoimentos
         </p>
       </div>
