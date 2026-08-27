@@ -51,7 +51,7 @@ export function HowItWorks() {
         </ol>
 
         <div className="mt-10 rounded-3xl border border-lime/30 bg-lime/10 px-6 py-6 text-center">
-          <p className="mt-1 text-sm font-semibold text-navy-foreground sm:text-base">
+          <p className="mt-1 text-sm font-semibold text-navy sm:text-base">
             Guia estruturado com índice, passo a passo de execução dos exercícios e perguntas frequentes — nada de instrução solta ou genérica.
           </p>
         </div>
