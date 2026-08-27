@@ -112,7 +112,25 @@ export function Testimonials() {
           ))}
         </ul>
 
-        <p className="mt-2 text-center text-xs text-navy-foreground/60">
+        <div className="mt-4 flex items-center justify-center gap-2">
+          {testimonials.map((item, index) => (
+            <button
+              key={item.name}
+              type="button"
+              onClick={() => scrollToIndex(index)}
+              aria-label={`Ver depoimento de ${item.name}`}
+              aria-current={index === activeIndex}
+              className={cn(
+                "h-2.5 rounded-full transition-all duration-300",
+                index === activeIndex
+                  ? "w-6 bg-action"
+                  : "w-2.5 bg-navy-foreground/25 hover:bg-navy-foreground/40",
+              )}
+            />
+          ))}
+        </div>
+
+        <p className="mt-3 text-center text-xs text-navy-foreground/60">
           Arraste para o lado para ver mais depoimentos
         </p>
       </div>
