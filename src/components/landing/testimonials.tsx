@@ -59,12 +59,29 @@ export function Testimonials() {
     });
   }, []);
 
-  const handlePointerDown = useCallback((event: React.PointerEvent<HTMLUListElement>) => {
-    const track = trackRef.current;
-    if (!track) return;
-    dragState.current = { active: true, startX: event.clientX, startScroll: track.scrollLeft };
-    track.setPointerCapture(event.pointerId);
-  }, []);
+  /** Autoplay: avança 1 card a cada 4.5s, em loop, respeitando a pausa por interação. */
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      if (Date.now() < pausedUntil) return;
+      setActiveIndex((current) => {
+        const next = (current + 1) % testimonials.length;
+        scrollToIndex(next);
+        return next;
+      });
+    }, 4500);
+    return () => window.clearInterval(timer);
+  }, [pausedUntil, scrollToIndex]);
+
+  const handlePointerDown = useCallback(
+    (event: React.PointerEvent<HTMLUListElement>) => {
+      const track = trackRef.current;
+      if (!track) return;
+      pauseAutoplay();
+      dragState.current = { active: true, startX: event.clientX, startScroll: track.scrollLeft };
+      track.setPointerCapture(event.pointerId);
+    },
+    [pauseAutoplay],
+  );
 
   const handlePointerMove = useCallback((event: React.PointerEvent<HTMLUListElement>) => {
     const track = trackRef.current;
