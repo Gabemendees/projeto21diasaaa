@@ -7,7 +7,6 @@ import { Hero } from "@/components/landing/hero";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { Pains } from "@/components/landing/pains";
 import { Plans } from "@/components/landing/plans";
-import { PriceAnchor } from "@/components/landing/price-anchor";
 import { Testimonials } from "@/components/landing/testimonials";
 
 const TITLE = "Desafio 21 Dias: Treino de 25 min e Dieta Sem Restrição";
