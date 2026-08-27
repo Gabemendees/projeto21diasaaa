@@ -23,6 +23,13 @@ export function Testimonials() {
   const trackRef = useRef<HTMLUListElement>(null);
   const dragState = useRef({ active: false, startX: 0, startScroll: 0 });
   const [activeIndex, setActiveIndex] = useState(0);
+  /** Timestamp até o qual o autoplay fica pausado após interação do usuário. */
+  const [pausedUntil, setPausedUntil] = useState(0);
+
+  /** Pausa o autoplay por 9s a partir de agora. */
+  const pauseAutoplay = useCallback(() => {
+    setPausedUntil(Date.now() + 9000);
+  }, []);
 
   /** Calcula o card mais próximo do centro visível do carrossel. */
   const handleScroll = useCallback(() => {
