@@ -36,7 +36,6 @@ function Index() {
       <Bonuses />
       <Testimonials />
       <Plans />
-      <PriceAnchor />
       <FinalCta />
       <Faq />
     </main>
