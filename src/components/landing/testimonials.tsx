@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -23,6 +23,13 @@ export function Testimonials() {
   const trackRef = useRef<HTMLUListElement>(null);
   const dragState = useRef({ active: false, startX: 0, startScroll: 0 });
   const [activeIndex, setActiveIndex] = useState(0);
+  /** Timestamp até o qual o autoplay fica pausado após interação do usuário. */
+  const [pausedUntil, setPausedUntil] = useState(0);
+
+  /** Pausa o autoplay por 9s a partir de agora. */
+  const pauseAutoplay = useCallback(() => {
+    setPausedUntil(Date.now() + 9000);
+  }, []);
 
   /** Calcula o card mais próximo do centro visível do carrossel. */
   const handleScroll = useCallback(() => {
@@ -52,12 +59,29 @@ export function Testimonials() {
     });
   }, []);
 
-  const handlePointerDown = useCallback((event: React.PointerEvent<HTMLUListElement>) => {
-    const track = trackRef.current;
-    if (!track) return;
-    dragState.current = { active: true, startX: event.clientX, startScroll: track.scrollLeft };
-    track.setPointerCapture(event.pointerId);
-  }, []);
+  /** Autoplay: avança 1 card a cada 4.5s, em loop, respeitando a pausa por interação. */
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      if (Date.now() < pausedUntil) return;
+      setActiveIndex((current) => {
+        const next = (current + 1) % testimonials.length;
+        scrollToIndex(next);
+        return next;
+      });
+    }, 4500);
+    return () => window.clearInterval(timer);
+  }, [pausedUntil, scrollToIndex]);
+
+  const handlePointerDown = useCallback(
+    (event: React.PointerEvent<HTMLUListElement>) => {
+      const track = trackRef.current;
+      if (!track) return;
+      pauseAutoplay();
+      dragState.current = { active: true, startX: event.clientX, startScroll: track.scrollLeft };
+      track.setPointerCapture(event.pointerId);
+    },
+    [pauseAutoplay],
+  );
 
   const handlePointerMove = useCallback((event: React.PointerEvent<HTMLUListElement>) => {
     const track = trackRef.current;
@@ -121,7 +145,10 @@ export function Testimonials() {
             <button
               key={item.name}
               type="button"
-              onClick={() => scrollToIndex(index)}
+              onClick={() => {
+                pauseAutoplay();
+                scrollToIndex(index);
+              }}
               aria-label={`Ver depoimento de ${item.name}`}
               aria-current={index === activeIndex}
               className={cn(
