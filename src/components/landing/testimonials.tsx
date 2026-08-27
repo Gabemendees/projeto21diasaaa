@@ -90,26 +90,28 @@ export function Testimonials() {
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
           onScroll={handleScroll}
-          className="mt-12 -mx-5 flex cursor-grab snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 select-none active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0"
+          className="mt-12 flex cursor-grab snap-x snap-mandatory overflow-x-auto pb-4 select-none active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {testimonials.map((item) => (
             <li
               key={item.name}
-              className="w-[82%] shrink-0 snap-center rounded-3xl border border-navy-foreground/15 bg-navy/60 p-4 shadow-xl sm:w-[46%] lg:w-[31%]"
+              className="flex w-full shrink-0 snap-center justify-center px-2"
             >
-              <span className="inline-flex rounded-full border border-lime/40 bg-lime/10 px-3 py-1 text-[11px] font-semibold tracking-wide text-lime uppercase">
-                Aluno Real
-              </span>
-              <img
-                src={item.image}
-                alt={`Print da conversa de ${item.name} sobre o Desafio 21 Dias`}
-                loading="lazy"
-                draggable={false}
-                className="mt-3 w-full rounded-2xl border border-navy-foreground/10"
-              />
-              <p className="mt-4 text-center text-base font-bold text-navy-foreground">
-                {item.name}
-              </p>
+              <div className="w-full max-w-md rounded-3xl border border-navy-foreground/15 bg-navy/60 p-4 shadow-xl">
+                <span className="inline-flex rounded-full border border-lime/40 bg-lime/10 px-3 py-1 text-[11px] font-semibold tracking-wide text-lime uppercase">
+                  Aluno Real
+                </span>
+                <img
+                  src={item.image}
+                  alt={`Print da conversa de ${item.name} sobre o Desafio 21 Dias`}
+                  loading="lazy"
+                  draggable={false}
+                  className="mt-3 w-full rounded-2xl border border-navy-foreground/10"
+                />
+                <p className="mt-4 text-center text-base font-bold text-navy-foreground">
+                  {item.name}
+                </p>
+              </div>
             </li>
           ))}
         </ul>
