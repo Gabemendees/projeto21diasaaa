@@ -145,7 +145,10 @@ export function Testimonials() {
             <button
               key={item.name}
               type="button"
-              onClick={() => scrollToIndex(index)}
+              onClick={() => {
+                pauseAutoplay();
+                scrollToIndex(index);
+              }}
               aria-label={`Ver depoimento de ${item.name}`}
               aria-current={index === activeIndex}
               className={cn(
