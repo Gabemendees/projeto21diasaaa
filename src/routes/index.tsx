@@ -34,12 +34,12 @@ function Index() {
       <Hero />
       <HowItWorks />
       <Pains />
-      <Plans />
       <Bonuses />
       <Testimonials />
+      <Plans />
       <PriceAnchor />
-      <Faq />
       <FinalCta />
+      <Faq />
     </main>
   );
 }

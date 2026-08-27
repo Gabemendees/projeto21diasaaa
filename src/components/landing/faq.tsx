@@ -1,7 +1,3 @@
-import { useState } from "react";
-
-import { cn } from "@/lib/utils";
-
 interface FaqItem {
   question: string;
   answer: string;
