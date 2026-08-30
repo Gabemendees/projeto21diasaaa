@@ -1,3 +1,4 @@
+import guaranteeSeal from "@/assets/selo-garantia-7-dias.jpeg.asset.json";
 import { CtaButton } from "./cta-button";
 
 export function FinalCta() {
@@ -23,13 +24,20 @@ export function FinalCta() {
         </div>
 
         <div className="mt-10 rounded-3xl border border-lime/30 bg-lime/10 px-6 py-6">
-          <p className="text-2xl" aria-hidden="true">
-            🛡️
-          </p>
-          <p className="mt-2 text-base font-bold text-lime sm:text-lg">Garantia de 7 dias</p>
-          <p className="mt-1 text-sm text-navy-foreground/75">
-            Se não gostar, devolvemos seu dinheiro. Sem burocracia e sem perguntas.
-          </p>
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:text-left">
+            <img
+              src={guaranteeSeal.url}
+              alt="Selo Garantia de 7 Dias"
+              className="w-28 shrink-0 sm:w-32"
+              loading="lazy"
+            />
+            <div>
+              <p className="text-base font-bold text-lime sm:text-lg">Garantia de 7 dias</p>
+              <p className="mt-1 text-sm text-navy-foreground/75">
+                Se não gostar, devolvemos seu dinheiro. Sem burocracia e sem perguntas.
+              </p>
+            </div>
+          </div>
         </div>
 
         <p className="mt-10 text-xs text-navy-foreground/50">
