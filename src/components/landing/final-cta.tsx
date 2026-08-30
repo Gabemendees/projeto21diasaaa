@@ -26,7 +26,7 @@ export function FinalCta() {
         <div className="mt-10 rounded-3xl border border-lime/30 bg-lime/10 px-6 py-6">
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:text-left">
             <img
-              src={guaranteeSeal.url}
+              src={guaranteeSeal}
               alt="Selo Garantia de 7 Dias"
               className="w-28 shrink-0 sm:w-32"
               loading="lazy"
