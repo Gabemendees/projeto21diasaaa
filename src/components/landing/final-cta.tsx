@@ -1,3 +1,4 @@
+import guaranteeSeal from "@/assets/selo-garantia-7-dias.jpeg.asset.json";
 import { CtaButton } from "./cta-button";
 
 export function FinalCta() {
