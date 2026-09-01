@@ -91,25 +91,56 @@ export function Testimonials() {
 
         <div ref={emblaRef} className="mt-12 cursor-grab overflow-hidden active:cursor-grabbing">
           <ul className="flex touch-pan-y select-none">
-            {testimonials.map((item) => (
-              <li key={item.name} className="flex min-w-0 flex-[0_0_100%] justify-center px-2">
-                <div className="w-full max-w-md rounded-3xl border border-navy-foreground/15 bg-navy/60 p-4 shadow-xl">
-                  <span className="inline-flex rounded-full bg-lime px-3 py-1 text-[11px] font-semibold tracking-wide text-lime-foreground uppercase">
-                    Aluno Real
-                  </span>
-                  <img
-                    src={item.image}
-                    alt={`Print da conversa de ${item.name} sobre o Desafio 21 Dias`}
-                    loading="lazy"
-                    draggable={false}
-                    className="mt-3 w-full rounded-2xl border border-navy-foreground/10"
-                  />
-                  <p className="mt-4 text-center text-base font-bold text-navy-foreground">
-                    {item.name}
-                  </p>
-                </div>
-              </li>
-            ))}
+            {testimonials.map((item) => {
+              const state = loadStates[item.name] ?? "loading";
+
+              return (
+                <li key={item.name} className="flex min-w-0 flex-[0_0_100%] justify-center px-2">
+                  <div className="w-full max-w-md rounded-3xl border border-navy-foreground/15 bg-navy/60 p-4 shadow-xl">
+                    <span className="inline-flex rounded-full bg-lime px-3 py-1 text-[11px] font-semibold tracking-wide text-lime-foreground uppercase">
+                      Aluno Real
+                    </span>
+
+                    <div
+                      className="relative mt-3 w-full overflow-hidden rounded-2xl border border-navy-foreground/10 bg-navy-foreground/5"
+                      style={{ aspectRatio: item.ratio }}
+                    >
+                      {state === "loading" && (
+                        <div
+                          aria-hidden="true"
+                          className="absolute inset-0 animate-pulse bg-navy-foreground/10"
+                        />
+                      )}
+
+                      {state === "error" ? (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-navy-foreground/50">
+                          <ImageOff className="size-8" aria-hidden="true" />
+                          <span className="text-xs">Depoimento indisponível</span>
+                        </div>
+                      ) : (
+                        <img
+                          src={item.image}
+                          alt={`Depoimento de ${item.name}, aluno do Desafio 21 Dias, em print de conversa no WhatsApp`}
+                          loading="lazy"
+                          decoding="async"
+                          draggable={false}
+                          onLoad={() => setLoadState(item.name, "loaded")}
+                          onError={() => setLoadState(item.name, "error")}
+                          className={cn(
+                            "absolute inset-0 size-full object-cover transition-opacity duration-500",
+                            state === "loaded" ? "opacity-100" : "opacity-0",
+                          )}
+                        />
+                      )}
+                    </div>
+
+                    <p className="mt-4 text-center text-base font-bold text-navy-foreground">
+                      {item.name}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
