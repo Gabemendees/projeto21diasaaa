@@ -1,4 +1,5 @@
 import { useState, useCallback, memo } from "react";
+import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { CtaButton } from "./cta-button";
