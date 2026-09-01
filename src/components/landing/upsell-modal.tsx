@@ -44,7 +44,7 @@ export function UpsellModal({ open, onAccept, onDecline, onClose }: UpsellModalP
       <div className="absolute inset-0 bg-black/80" aria-hidden="true" />
 
       <div className="relative z-10 w-full max-w-md animate-in zoom-in-95 fade-in duration-300">
-        <div className="rounded-3xl border-2 border-lime bg-navy-deep p-7 shadow-2xl shadow-black/60 sm:p-8">
+        <div className="max-h-[85vh] overflow-y-auto rounded-3xl border-2 border-lime bg-navy-deep p-7 shadow-2xl shadow-black/60 sm:p-8">
           <button
             type="button"
             onClick={(e) => {
