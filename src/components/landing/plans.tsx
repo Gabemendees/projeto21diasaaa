@@ -23,6 +23,16 @@ const premiumItems = [
   "FAQ exclusivo e mais aprofundado",
 ];
 
+const basicNotIncludedItems = [
+  "Treino detalhado dia a dia, versão casa E academia lado a lado",
+  "2 cardápios completos (emagrecimento e ganho de massa)",
+  "6 receitas fáceis passo a passo",
+  "Planner de acompanhamento dos 21 dias",
+  "Guia de hidratação e sono",
+  "Guia de manutenção pós-desafio",
+  "FAQ exclusivo e mais aprofundado",
+];
+
 const PREMIUM_DIRECT_URL = "https://pay.sunize.com.br/iQQmWWuk";
 const PREMIUM_DISCOUNT_URL = "https://pay.sunize.com.br/bTViWRRk";
 const BASIC_URL = "https://pay.sunize.com.br/ytcEyjZz";
