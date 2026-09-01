@@ -10,6 +10,13 @@ import marceloImage from "@/assets/depoimento-marcelo.jpeg";
 import pedroImage from "@/assets/depoimento-pedro.jpeg";
 import rebecaImage from "@/assets/depoimento-rebeca.jpeg";
 
+const IMAGE_CACHE_VERSION = "2";
+
+function withCacheVersion(imageUrl: string): string {
+  const separator = imageUrl.includes("?") ? "&" : "?";
+  return `${imageUrl}${separator}v=${IMAGE_CACHE_VERSION}`;
+}
+
 interface Testimonial {
   /** Nome exibido abaixo do print (extraído do topo da conversa). */
   name: string;
@@ -20,9 +27,9 @@ interface Testimonial {
 }
 
 const testimonials: Testimonial[] = [
-  { name: "Rebeca", image: rebecaImage, ratio: "780 / 1600" },
-  { name: "Marcelo", image: marceloImage, ratio: "788 / 1600" },
-  { name: "Pedro", image: pedroImage, ratio: "780 / 1600" },
+  { name: "Rebeca", image: withCacheVersion(rebecaImage), ratio: "780 / 1600" },
+  { name: "Marcelo", image: withCacheVersion(marceloImage), ratio: "788 / 1600" },
+  { name: "Pedro", image: withCacheVersion(pedroImage), ratio: "780 / 1600" },
 ];
 
 type LoadState = "loading" | "loaded" | "error";
@@ -43,7 +50,9 @@ export function Testimonials() {
 
   /** Marca o estado de carregamento de um print específico. */
   const setLoadState = useCallback((name: string, state: LoadState) => {
-    setLoadStates((previous) => ({ ...previous, [name]: state }));
+    setLoadStates((previous) =>
+      previous[name] === state ? previous : { ...previous, [name]: state },
+    );
   }, []);
 
   /** Sincroniza a bolinha ativa sempre que o Embla muda de slide. */
@@ -119,6 +128,13 @@ export function Testimonials() {
                         </div>
                       ) : (
                         <img
+                          ref={(imageElement) => {
+                            if (!imageElement?.complete) return;
+                            setLoadState(
+                              item.name,
+                              imageElement.naturalWidth > 0 ? "loaded" : "error",
+                            );
+                          }}
                           src={item.image}
                           alt={`Depoimento de ${item.name}, aluno do Desafio 21 Dias, em print de conversa no WhatsApp`}
                           loading="lazy"
@@ -126,10 +142,7 @@ export function Testimonials() {
                           draggable={false}
                           onLoad={() => setLoadState(item.name, "loaded")}
                           onError={() => setLoadState(item.name, "error")}
-                          className={cn(
-                            "absolute inset-0 size-full object-cover transition-opacity duration-500",
-                            state === "loaded" ? "opacity-100" : "opacity-0",
-                          )}
+                          className="absolute inset-0 size-full object-cover"
                         />
                       )}
                     </div>
