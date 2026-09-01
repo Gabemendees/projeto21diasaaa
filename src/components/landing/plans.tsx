@@ -42,6 +42,7 @@ interface PlanCardProps {
   price: string;
   description: string;
   items: string[];
+  notIncludedItems?: string[];
   featured?: boolean;
   onBasicClick?: () => void;
 }
@@ -51,6 +52,7 @@ const PlanCard = memo(function PlanCard({
   price,
   description,
   items,
+  notIncludedItems,
   featured = false,
   onBasicClick,
 }: PlanCardProps) {
