@@ -1,3 +1,4 @@
+import { ImageOff } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import Autoplay from "embla-carousel-autoplay";
@@ -5,22 +6,26 @@ import useEmblaCarousel from "embla-carousel-react";
 
 import { cn } from "@/lib/utils";
 
-import marceloAsset from "@/assets/depoimento-marcelo.jpeg.asset.json";
-import pedroAsset from "@/assets/depoimento-pedro.jpeg.asset.json";
-import rebecaAsset from "@/assets/depoimento-rebeca.jpeg.asset.json";
+import marceloImage from "@/assets/depoimento-marcelo.jpeg";
+import pedroImage from "@/assets/depoimento-pedro.jpeg";
+import rebecaImage from "@/assets/depoimento-rebeca.jpeg";
 
 interface Testimonial {
   /** Nome exibido abaixo do print (extraído do topo da conversa). */
   name: string;
   /** URL do print real, exibido sem edições. */
   image: string;
+  /** Proporção nativa do print, usada para reservar espaço no layout. */
+  ratio: string;
 }
 
 const testimonials: Testimonial[] = [
-  { name: "Rebeca", image: rebecaAsset.url },
-  { name: "Marcelo", image: marceloAsset.url },
-  { name: "Pedro", image: pedroAsset.url },
+  { name: "Rebeca", image: rebecaImage, ratio: "780 / 1600" },
+  { name: "Marcelo", image: marceloImage, ratio: "788 / 1600" },
+  { name: "Pedro", image: pedroImage, ratio: "780 / 1600" },
 ];
+
+type LoadState = "loading" | "loaded" | "error";
 
 const AUTOPLAY_DELAY_MS = 5000;
 const MANUAL_PAUSE_MS = 8000;
@@ -34,6 +39,12 @@ export function Testimonials() {
     [autoplay.current],
   );
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loadStates, setLoadStates] = useState<Record<string, LoadState>>({});
+
+  /** Marca o estado de carregamento de um print específico. */
+  const setLoadState = useCallback((name: string, state: LoadState) => {
+    setLoadStates((previous) => ({ ...previous, [name]: state }));
+  }, []);
 
   /** Sincroniza a bolinha ativa sempre que o Embla muda de slide. */
   const onSelect = useCallback(() => {
@@ -80,25 +91,56 @@ export function Testimonials() {
 
         <div ref={emblaRef} className="mt-12 cursor-grab overflow-hidden active:cursor-grabbing">
           <ul className="flex touch-pan-y select-none">
-            {testimonials.map((item) => (
-              <li key={item.name} className="flex min-w-0 flex-[0_0_100%] justify-center px-2">
-                <div className="w-full max-w-md rounded-3xl border border-navy-foreground/15 bg-navy/60 p-4 shadow-xl">
-                  <span className="inline-flex rounded-full bg-lime px-3 py-1 text-[11px] font-semibold tracking-wide text-lime-foreground uppercase">
-                    Aluno Real
-                  </span>
-                  <img
-                    src={item.image}
-                    alt={`Print da conversa de ${item.name} sobre o Desafio 21 Dias`}
-                    loading="lazy"
-                    draggable={false}
-                    className="mt-3 w-full rounded-2xl border border-navy-foreground/10"
-                  />
-                  <p className="mt-4 text-center text-base font-bold text-navy-foreground">
-                    {item.name}
-                  </p>
-                </div>
-              </li>
-            ))}
+            {testimonials.map((item) => {
+              const state = loadStates[item.name] ?? "loading";
+
+              return (
+                <li key={item.name} className="flex min-w-0 flex-[0_0_100%] justify-center px-2">
+                  <div className="w-full max-w-md rounded-3xl border border-navy-foreground/15 bg-navy/60 p-4 shadow-xl">
+                    <span className="inline-flex rounded-full bg-lime px-3 py-1 text-[11px] font-semibold tracking-wide text-lime-foreground uppercase">
+                      Aluno Real
+                    </span>
+
+                    <div
+                      className="relative mt-3 w-full overflow-hidden rounded-2xl border border-navy-foreground/10 bg-navy-foreground/5"
+                      style={{ aspectRatio: item.ratio }}
+                    >
+                      {state === "loading" && (
+                        <div
+                          aria-hidden="true"
+                          className="absolute inset-0 animate-pulse bg-navy-foreground/10"
+                        />
+                      )}
+
+                      {state === "error" ? (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-navy-foreground/50">
+                          <ImageOff className="size-8" aria-hidden="true" />
+                          <span className="text-xs">Depoimento indisponível</span>
+                        </div>
+                      ) : (
+                        <img
+                          src={item.image}
+                          alt={`Depoimento de ${item.name}, aluno do Desafio 21 Dias, em print de conversa no WhatsApp`}
+                          loading="lazy"
+                          decoding="async"
+                          draggable={false}
+                          onLoad={() => setLoadState(item.name, "loaded")}
+                          onError={() => setLoadState(item.name, "error")}
+                          className={cn(
+                            "absolute inset-0 size-full object-cover transition-opacity duration-500",
+                            state === "loaded" ? "opacity-100" : "opacity-0",
+                          )}
+                        />
+                      )}
+                    </div>
+
+                    <p className="mt-4 text-center text-base font-bold text-navy-foreground">
+                      {item.name}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
