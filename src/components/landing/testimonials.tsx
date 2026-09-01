@@ -1,3 +1,4 @@
+import { ImageOff } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import Autoplay from "embla-carousel-autoplay";
