@@ -91,16 +91,32 @@ const PlanCard = memo(function PlanCard({
         pagamento único, sem mensalidade
       </p>
 
-      <ul className="mt-6 flex-1 space-y-3">
-        {items.map((item) => (
-          <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
-            <span aria-hidden="true" className={featured ? "text-lime" : "text-action"}>
-              {item.startsWith("Tudo") ? "" : "✅"}
-            </span>
-            {item}
-          </li>
-        ))}
-      </ul>
+      <div className="mt-6 flex-1 space-y-5">
+        <ul className="space-y-3">
+          {items.map((item) => (
+            <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
+              <span aria-hidden="true" className={featured ? "text-lime" : "text-action"}>
+                {item.startsWith("Tudo") ? "" : "✅"}
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        {notIncludedItems && notIncludedItems.length > 0 && (
+          <ul className="space-y-3 border-t border-border/50 pt-5">
+            {notIncludedItems.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground/60"
+              >
+                <X aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-red-500" strokeWidth={2.5} />
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       {isBasic ? (
         <button
