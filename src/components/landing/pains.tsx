@@ -1,7 +1,7 @@
 const pains = [
   "Você já começou uma dieta cheia de vontade e desistiu na primeira semana.",
   "Treino de 1 hora simplesmente não cabe na sua rotina.",
-  "Dieta restritiva funciona por alguns dias — e depois vem o efeito sanfona.",
+  "Dieta restritiva funciona por alguns dias, e depois vem o efeito sanfona.",
   "Você não sabe se deveria focar em emagrecer primeiro ou ganhar massa.",
   "Já tentou de tudo e não viu resultado rápido o suficiente para continuar.",
 ];
