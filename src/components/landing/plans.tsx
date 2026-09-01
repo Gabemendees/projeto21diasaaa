@@ -184,6 +184,7 @@ export function Plans() {
               price="9,90"
               description="O essencial para começar hoje."
               items={basicItems}
+              notIncludedItems={basicNotIncludedItems}
               onBasicClick={handleBasicClick}
             />
             <PlanCard
