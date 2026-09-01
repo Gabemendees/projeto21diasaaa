@@ -39,6 +39,12 @@ export function Testimonials() {
     [autoplay.current],
   );
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loadStates, setLoadStates] = useState<Record<string, LoadState>>({});
+
+  /** Marca o estado de carregamento de um print específico. */
+  const setLoadState = useCallback((name: string, state: LoadState) => {
+    setLoadStates((previous) => ({ ...previous, [name]: state }));
+  }, []);
 
   /** Sincroniza a bolinha ativa sempre que o Embla muda de slide. */
   const onSelect = useCallback(() => {
