@@ -1,4 +1,5 @@
 import { useState, useCallback, memo } from "react";
+import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { CtaButton } from "./cta-button";
@@ -22,6 +23,16 @@ const premiumItems = [
   "FAQ exclusivo e mais aprofundado",
 ];
 
+const basicNotIncludedItems = [
+  "Treino detalhado dia a dia, versão casa E academia lado a lado",
+  "2 cardápios completos (emagrecimento e ganho de massa)",
+  "6 receitas fáceis passo a passo",
+  "Planner de acompanhamento dos 21 dias",
+  "Guia de hidratação e sono",
+  "Guia de manutenção pós-desafio",
+  "FAQ exclusivo e mais aprofundado",
+];
+
 const PREMIUM_DIRECT_URL = "https://pay.sunize.com.br/iQQmWWuk";
 const PREMIUM_DISCOUNT_URL = "https://pay.sunize.com.br/bTViWRRk";
 const BASIC_URL = "https://pay.sunize.com.br/ytcEyjZz";
@@ -31,6 +42,7 @@ interface PlanCardProps {
   price: string;
   description: string;
   items: string[];
+  notIncludedItems?: string[];
   featured?: boolean;
   onBasicClick?: () => void;
 }
@@ -40,6 +52,7 @@ const PlanCard = memo(function PlanCard({
   price,
   description,
   items,
+  notIncludedItems,
   featured = false,
   onBasicClick,
 }: PlanCardProps) {
@@ -78,16 +91,32 @@ const PlanCard = memo(function PlanCard({
         pagamento único, sem mensalidade
       </p>
 
-      <ul className="mt-6 flex-1 space-y-3">
-        {items.map((item) => (
-          <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
-            <span aria-hidden="true" className={featured ? "text-lime" : "text-action"}>
-              {item.startsWith("Tudo") ? "" : "✅"}
-            </span>
-            {item}
-          </li>
-        ))}
-      </ul>
+      <div className="mt-6 flex-1 space-y-5">
+        <ul className="space-y-3">
+          {items.map((item) => (
+            <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
+              <span aria-hidden="true" className={featured ? "text-lime" : "text-action"}>
+                {item.startsWith("Tudo") ? "" : "✅"}
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        {notIncludedItems && notIncludedItems.length > 0 && (
+          <ul className="space-y-3 border-t border-border/50 pt-5">
+            {notIncludedItems.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground/60"
+              >
+                <X aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-red-500" strokeWidth={2.5} />
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       {isBasic ? (
         <button
@@ -155,6 +184,7 @@ export function Plans() {
               price="9,90"
               description="O essencial para começar hoje."
               items={basicItems}
+              notIncludedItems={basicNotIncludedItems}
               onBasicClick={handleBasicClick}
             />
             <PlanCard
