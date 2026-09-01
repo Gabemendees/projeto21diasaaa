@@ -142,10 +142,7 @@ export function Testimonials() {
                           draggable={false}
                           onLoad={() => setLoadState(item.name, "loaded")}
                           onError={() => setLoadState(item.name, "error")}
-                          className={cn(
-                            "absolute inset-0 size-full object-cover transition-opacity duration-500",
-                            state === "loaded" ? "opacity-100" : "opacity-0",
-                          )}
+                          className="absolute inset-0 size-full object-cover"
                         />
                       )}
                     </div>
