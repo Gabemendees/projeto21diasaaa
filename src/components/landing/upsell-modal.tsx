@@ -15,6 +15,9 @@ const premiumDifferentials = [
   "2 cardápios completos (emagrecimento e ganho de massa)",
   "6 receitas fáceis",
   "Planner de acompanhamento de 21 dias",
+  "Guia de hidratação e sono",
+  "Guia de manutenção pós-desafio",
+  "FAQ exclusivo e mais aprofundado",
 ];
 
 export function UpsellModal({ open, onAccept, onDecline, onClose }: UpsellModalProps) {
