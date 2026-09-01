@@ -6,22 +6,26 @@ import useEmblaCarousel from "embla-carousel-react";
 
 import { cn } from "@/lib/utils";
 
-import marceloAsset from "@/assets/depoimento-marcelo.jpeg.asset.json";
-import pedroAsset from "@/assets/depoimento-pedro.jpeg.asset.json";
-import rebecaAsset from "@/assets/depoimento-rebeca.jpeg.asset.json";
+import marceloImage from "@/assets/depoimento-marcelo.jpeg";
+import pedroImage from "@/assets/depoimento-pedro.jpeg";
+import rebecaImage from "@/assets/depoimento-rebeca.jpeg";
 
 interface Testimonial {
   /** Nome exibido abaixo do print (extraído do topo da conversa). */
   name: string;
   /** URL do print real, exibido sem edições. */
   image: string;
+  /** Proporção nativa do print, usada para reservar espaço no layout. */
+  ratio: string;
 }
 
 const testimonials: Testimonial[] = [
-  { name: "Rebeca", image: rebecaAsset.url },
-  { name: "Marcelo", image: marceloAsset.url },
-  { name: "Pedro", image: pedroAsset.url },
+  { name: "Rebeca", image: rebecaImage, ratio: "780 / 1600" },
+  { name: "Marcelo", image: marceloImage, ratio: "788 / 1600" },
+  { name: "Pedro", image: pedroImage, ratio: "780 / 1600" },
 ];
+
+type LoadState = "loading" | "loaded" | "error";
 
 const AUTOPLAY_DELAY_MS = 5000;
 const MANUAL_PAUSE_MS = 8000;
