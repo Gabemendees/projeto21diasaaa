@@ -44,6 +44,8 @@ interface PlanCardProps {
   items: string[];
   notIncludedItems?: string[];
   featured?: boolean;
+  valueNote?: string;
+  priceBadge?: string;
   onBasicClick?: () => void;
 }
 
@@ -54,6 +56,8 @@ const PlanCard = memo(function PlanCard({
   items,
   notIncludedItems,
   featured = false,
+  valueNote,
+  priceBadge,
   onBasicClick,
 }: PlanCardProps) {
   const isBasic = name === "Básico";
@@ -83,7 +87,24 @@ const PlanCard = memo(function PlanCard({
         {description}
       </p>
 
-      <p className="mt-5 flex items-baseline gap-1">
+      {valueNote && (
+        <p
+          className={cn(
+            "mt-5 text-xs leading-relaxed line-through",
+            featured ? "text-navy-foreground/50" : "text-muted-foreground/70",
+          )}
+        >
+          {valueNote}
+        </p>
+      )}
+
+      {priceBadge && (
+        <span className="mt-5 inline-flex w-fit rounded-full bg-offer/15 px-3 py-1 text-[11px] font-bold tracking-wide text-offer uppercase">
+          {priceBadge}
+        </span>
+      )}
+
+      <p className={cn("flex items-baseline gap-1", valueNote ? "mt-2" : "mt-3")}>
         <span className="text-sm font-semibold">R$</span>
         <span className="font-display text-5xl text-action">{price}</span>
       </p>
@@ -178,19 +199,27 @@ export function Plans() {
             </p>
           </header>
 
-          <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="mt-8 flex justify-center">
+            <span className="inline-flex animate-pulse items-center gap-2 rounded-full bg-offer px-5 py-2 text-sm font-bold tracking-wide text-offer-foreground uppercase shadow-lg shadow-offer/30">
+              🔥 Oferta por tempo limitado
+            </span>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
             <PlanCard
               name="Básico"
               price="9,90"
               description="O essencial para começar hoje."
               items={basicItems}
               notIncludedItems={basicNotIncludedItems}
+              priceBadge="Preço de lançamento"
               onBasicClick={handleBasicClick}
             />
             <PlanCard
               name="Premium"
               price="29,90"
               description="A experiência completa, dia por dia."
+              valueNote="Se comprado separado: treino detalhado + 2 cardápios + receitas + planner + guias extras ultrapassaria R$80 em produtos avulsos"
               items={premiumItems}
               featured
             />

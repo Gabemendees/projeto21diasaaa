@@ -67,6 +67,8 @@
   --color-lime: var(--lime);
   --color-lime-foreground: var(--lime-foreground);
   --color-plum: var(--plum);
+  --color-offer: var(--offer);
+  --color-offer-foreground: var(--offer-foreground);
   --font-display: "Anton", "Archivo Black", sans-serif;
   --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
 }
@@ -113,6 +115,8 @@
   --lime: oklch(0.923 0.199 118.5);
   --lime-foreground: oklch(0.24 0.06 120);
   --plum: oklch(0.318 0.116 302);
+  --offer: oklch(0.679 0.185 41.5);
+  --offer-foreground: oklch(1 0 0);
 }
 
 .dark {
