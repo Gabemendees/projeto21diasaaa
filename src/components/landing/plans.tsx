@@ -91,16 +91,17 @@ const PlanCard = memo(function PlanCard({
         <div className="mt-5 flex items-center gap-2">
           <span
             className={cn(
-              "text-base font-bold tracking-widest uppercase",
+              "text-2xl font-bold tracking-widest uppercase",
               featured ? "text-navy-foreground" : "text-action",
             )}
           >
             De
           </span>
 
-          <span className="text-base font-bold text-action">
+          <span className="text-2xl font-bold text-action">
             {valueNote}
           </span>
+
 
           <span
             className={cn(
