@@ -90,11 +90,12 @@ const PlanCard = memo(function PlanCard({
       {valueNote && (
         <p
           className={cn(
-            "mt-5 text-xs leading-relaxed line-through",
-            featured ? "text-navy-foreground/50" : "text-muted-foreground/70",
+            "mt-5 text-sm leading-relaxed",
+            featured ? "text-navy-foreground/60" : "text-muted-foreground",
           )}
         >
-          {valueNote}
+          <span className="line-through">{valueNote}</span>{" "}
+          <span className="font-semibold">por</span>
         </p>
       )}
 
@@ -219,7 +220,7 @@ export function Plans() {
               name="Premium"
               price="29,90"
               description="A experiência completa, dia por dia."
-              valueNote="Se comprado separado: treino detalhado + 2 cardápios + receitas + planner + guias extras ultrapassaria R$80 em produtos avulsos"
+              valueNote="De R$ 58,90"
               items={premiumItems}
               featured
             />
