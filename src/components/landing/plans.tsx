@@ -199,19 +199,27 @@ export function Plans() {
             </p>
           </header>
 
-          <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="mt-8 flex justify-center">
+            <span className="inline-flex animate-pulse items-center gap-2 rounded-full bg-offer px-5 py-2 text-sm font-bold tracking-wide text-offer-foreground uppercase shadow-lg shadow-offer/30">
+              🔥 Oferta por tempo limitado
+            </span>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
             <PlanCard
               name="Básico"
               price="9,90"
               description="O essencial para começar hoje."
               items={basicItems}
               notIncludedItems={basicNotIncludedItems}
+              priceBadge="Preço de lançamento"
               onBasicClick={handleBasicClick}
             />
             <PlanCard
               name="Premium"
               price="29,90"
               description="A experiência completa, dia por dia."
+              valueNote="Se comprado separado: treino detalhado + 2 cardápios + receitas + planner + guias extras ultrapassaria R$80 em produtos avulsos"
               items={premiumItems}
               featured
             />
