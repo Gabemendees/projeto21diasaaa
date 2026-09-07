@@ -89,10 +89,22 @@ const PlanCard = memo(function PlanCard({
 
       {valueNote && (
         <div className="mt-5 flex items-center gap-2">
-          <span className="rounded-md bg-offer px-2 py-0.5 text-[10px] font-bold tracking-widest text-offer-foreground uppercase">
+          <span
+            className={cn(
+              "rounded-md px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase",
+              featured ? "bg-lime text-lime-foreground" : "bg-action text-white",
+            )}
+          >
             De
           </span>
-          <span className="text-base font-bold text-offer">{valueNote}</span>
+          <span
+            className={cn(
+              "text-base font-bold",
+              featured ? "text-lime" : "text-action",
+            )}
+          >
+            {valueNote}
+          </span>
           <span
             className={cn(
               "text-[11px] font-bold tracking-widest uppercase",
