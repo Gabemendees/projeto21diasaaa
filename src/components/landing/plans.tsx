@@ -220,7 +220,7 @@ export function Plans() {
               name="Premium"
               price="29,90"
               description="A experiência completa, dia por dia."
-              valueNote="Se comprado separado: treino detalhado + 2 cardápios + receitas + planner + guias extras ultrapassaria R$80 em produtos avulsos"
+              valueNote="De R$ 58,90"
               items={premiumItems}
               featured
             />
