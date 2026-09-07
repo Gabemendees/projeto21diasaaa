@@ -91,12 +91,13 @@ const PlanCard = memo(function PlanCard({
         <div className="mt-5 flex items-center gap-2">
           <span
             className={cn(
-              "rounded-md px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase",
-              featured ? "bg-navy-foreground text-navy" : "bg-action text-white",
+              "text-base font-bold tracking-widest uppercase",
+              featured ? "text-navy-foreground" : "text-action",
             )}
           >
             De
           </span>
+
           <span className="text-base font-bold text-action">
             {valueNote}
           </span>
