@@ -200,7 +200,7 @@ export function Plans() {
           </header>
 
           <div className="mt-8 flex justify-center">
-            <span className="inline-flex animate-pulse items-center gap-2 rounded-full bg-offer px-5 py-2 text-sm font-bold tracking-wide text-offer-foreground uppercase shadow-lg shadow-offer/30">
+            <span className="inline-flex items-center gap-2 rounded-full bg-offer px-5 py-2 text-sm font-bold tracking-wide text-offer-foreground uppercase shadow-lg shadow-offer/30">
               🔥 Oferta por tempo limitado
             </span>
           </div>
