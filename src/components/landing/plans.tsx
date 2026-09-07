@@ -44,6 +44,8 @@ interface PlanCardProps {
   items: string[];
   notIncludedItems?: string[];
   featured?: boolean;
+  valueNote?: string;
+  priceBadge?: string;
   onBasicClick?: () => void;
 }
 
@@ -54,6 +56,8 @@ const PlanCard = memo(function PlanCard({
   items,
   notIncludedItems,
   featured = false,
+  valueNote,
+  priceBadge,
   onBasicClick,
 }: PlanCardProps) {
   const isBasic = name === "Básico";
