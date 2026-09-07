@@ -97,14 +97,10 @@ const PlanCard = memo(function PlanCard({
           >
             De
           </span>
-          <span
-            className={cn(
-              "text-base font-bold",
-              featured ? "text-lime" : "text-action",
-            )}
-          >
+          <span className="text-base font-bold text-action">
             {valueNote}
           </span>
+
           <span
             className={cn(
               "text-[11px] font-bold tracking-widest uppercase",
