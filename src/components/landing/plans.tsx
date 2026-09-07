@@ -238,7 +238,7 @@ export function Plans() {
               name="Premium"
               price="29,90"
               description="A experiência completa, dia por dia."
-              valueNote="De R$ 58,90"
+              valueNote="R$ 59,90"
               items={premiumItems}
               featured
             />
