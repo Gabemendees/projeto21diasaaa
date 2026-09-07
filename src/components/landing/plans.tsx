@@ -88,15 +88,26 @@ const PlanCard = memo(function PlanCard({
       </p>
 
       {valueNote && (
-        <p
-          className={cn(
-            "mt-5 text-sm leading-relaxed",
-            featured ? "text-navy-foreground/60" : "text-muted-foreground",
-          )}
-        >
-          <span className="line-through">{valueNote}</span>{" "}
-          <span className="font-semibold">por</span>
-        </p>
+        <div className="mt-5 flex items-center gap-2">
+          <span
+            className={cn(
+              "rounded-md px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase",
+              featured
+                ? "bg-navy-foreground/10 text-navy-foreground/60"
+                : "bg-muted text-muted-foreground",
+            )}
+          >
+            Antes
+          </span>
+          <span
+            className={cn(
+              "text-base font-semibold",
+              featured ? "text-navy-foreground/50" : "text-muted-foreground",
+            )}
+          >
+            {valueNote}
+          </span>
+        </div>
       )}
 
       {priceBadge && (
@@ -105,13 +116,26 @@ const PlanCard = memo(function PlanCard({
         </span>
       )}
 
-      <p className={cn("flex items-baseline gap-1", valueNote ? "mt-2" : "mt-3")}>
-        <span className="text-sm font-semibold">R$</span>
-        <span className="font-display text-5xl text-action">{price}</span>
-      </p>
-      <p className={cn("text-xs", featured ? "text-navy-foreground/60" : "text-muted-foreground")}>
+      <div className={cn("flex flex-wrap items-end gap-3", valueNote ? "mt-2" : "mt-3")}>
+        <p className="flex items-baseline gap-1">
+          <span className="text-sm font-semibold">R$</span>
+          <span className="font-display text-6xl leading-none text-action">{price}</span>
+        </p>
+        {valueNote && (
+          <span className="mb-1 inline-flex items-center rounded-lg bg-action px-2.5 py-1 text-xs font-bold tracking-wide text-white uppercase shadow-lg shadow-action/40">
+            50% off hoje
+          </span>
+        )}
+      </div>
+      <p
+        className={cn(
+          "mt-1 text-xs",
+          featured ? "text-navy-foreground/60" : "text-muted-foreground",
+        )}
+      >
         pagamento único, sem mensalidade
       </p>
+
 
       <div className="mt-6 flex-1 space-y-5">
         <ul className="space-y-3">
